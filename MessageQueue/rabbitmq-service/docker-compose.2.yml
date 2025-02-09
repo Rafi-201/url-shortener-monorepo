@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # RabbitMQ communication port
+      - "15672:15672" # Management UI port
+    volumes:
+      - ./rabbitmq:/etc/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin # Default username
+      RABBITMQ_DEFAULT_PASS: password # Default password

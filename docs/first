@@ -1,0 +1,129 @@
++------------------+          +------------------+
+|    API Service   |          |  Worker Service  |
+| (Dockerized)     |          | (Dockerized)     |
+|                  |          |                  |
+| Publishes Events |          | Consumes Events  |
++------------------+          +------------------+
+            \                         /
+             \                       /
+              +--------------------+
+              |    RabbitMQ        | (Dockerized)
+              +--------------------+
+                      |
+                      v
+            +--------------------+
+            |      Database      | (Dockerized)
+            +--------------------+
+
+
+1. API Service
+api-service/
+├── src/
+│   ├── controllers/
+│   │   ├── UrlController.ts       # Handles incoming HTTP requests
+│   │
+│   ├── services/
+│   │   ├── UrlService.ts          # Business logic for creating short URLs
+│   │
+│   ├── queue/
+│   │   ├── RabbitMQPublisher.ts   # Publishes messages to RabbitMQ
+│   │
+│   ├── utils/
+│   │   ├── Base62Encoder.ts       # Base62 encoding logic
+│   │   ├── Logger.ts              # Logger for monitoring
+│   │
+│   ├── config/
+│   │   ├── appConfig.ts           # App configuration (e.g., port, RabbitMQ URL)
+│   │   ├── rabbitmqConfig.ts      # RabbitMQ connection setup
+│   │
+│   ├── index.ts                   # Entry point for the service
+│
+├── Dockerfile                     # Dockerfile for API Service
+├── package.json                   # Dependencies and scripts
+├── tsconfig.json                  # TypeScript configuration
+
+
+
+
+
+
+
+
+worker-service/
+├── src/
+│   ├── consumers/
+│   │   ├── RabbitMQConsumer.ts    # Listens for RabbitMQ messages
+│   │
+│   ├── services/
+│   │   ├── BulkInsertService.ts   # Handles batching and database inserts
+│   │
+│   ├── repositories/
+│   │   ├── UrlRepository.ts       # Abstracts database interactions
+│   │
+│   ├── utils/
+│   │   ├── Logger.ts              # Logs for monitoring
+│   │
+│   ├── config/
+│   │   ├── appConfig.ts           # App-level configuration
+│   │   ├── rabbitmqConfig.ts      # RabbitMQ configuration
+│   │   ├── dbConfig.ts            # Database configuration
+│   │
+│   ├── models/
+│   │   ├── UrlMapping.ts          # Defines the schema for URL mappings
+│   │
+│   ├── index.ts                   # Entry point for starting the worker
+│
+├── Dockerfile                     # Dockerfile for Worker service
+├── package.json                   # Dependencies and scripts
+
+
+
+
+
+
+level 2:
+worker-service-for-bulk-insertation/
+├── src/
+│   ├── adapters/
+│   │   ├── in/
+│   │   │   ├── RabbitMQConsumer.ts        # Listens for RabbitMQ messages (interface adapter layer)
+│   │   │
+│   │   ├── out/
+│   │   │   ├── repositories/
+│   │   │   │   ├── UrlRepository.ts       # Data access interface (interface adapter layer)
+│   │   │   │
+│   │   │   ├── db/                    
+│   │   │   │   ├── DatabaseAdapter.ts     # Database interaction (frameworks and drivers layer)
+│   │   │
+│   │   ├── controllers/
+│   │   │   ├── UrlController.ts           # Manages request/response for API endpoints (if needed)
+│   │
+│   ├── core/
+│   │   ├── entities/
+│   │   │   ├── UrlMapping.ts              # Core domain model (entities layer)
+│   │   │
+│   │   ├── useCases/
+│   │   │   ├── BulkInsertService.ts       # Business logic (use case layer)
+│   │   │   ├── ProcessMessageService.ts   # Additional business logic if needed
+│   │   │
+│   │   ├── dtos/
+│   │   │   ├── UrlDto.ts                  # Data Transfer Objects (DTOs layer)
+│   │   │
+│   │   ├── interfaces/
+│   │   │   ├── UrlRepository.ts           # Interface for the repository
+│   │   │
+│   ├── infrastructure/
+│   │   ├── config/
+│   │   │   ├── appConfig.ts               # App-level configuration
+│   │   │   ├── rabbitmqConfig.ts          # RabbitMQ configuration
+│   │   │   ├── dbConfig.ts                # Database configuration
+│   │
+│   │   ├── utils/
+│   │   │   ├── Logger.ts                  # Logging utilities (cross-cutting concerns)
+│   │   │   ├── ErrorHandler.ts            # Centralized error handler (optional)
+│   │
+│   ├── index.ts                           # Entry point for starting the worker (bootstraps app)
+│
+├── Dockerfile                             # Dockerfile for Worker service
+├── package.json                           # Dependencies and scripts
+└── README.md                              # Project documentation

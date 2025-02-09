@@ -1,0 +1,16 @@
+{
+  "name": "worker-service",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "ts-node": "^10.4.0"
+  }
+}

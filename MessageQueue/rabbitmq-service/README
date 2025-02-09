@@ -1,0 +1,41 @@
+Run RabbitMQ
+Start RabbitMQ using Docker Compose:
+
+bash
+Copy code
+docker-compose up -d
+Access the RabbitMQ Management UI:
+
+Open http://localhost:15672
+Login with:
+Username: admin
+Password: admin
+Monitor Queues:
+
+Check the url-events queue to see published and consumed messages.
+Why This Architecture Can Handle 1000 Writes/Second
+Asynchronous Communication:
+
+The API Service publishes events to RabbitMQ immediately, offloading the write operation to the Worker Service.
+The Worker Service batches these events and inserts them into the database efficiently.
+RabbitMQ High Throughput:
+
+RabbitMQ can handle thousands of messages per second with proper tuning.
+Batch Writes in Worker Service:
+
+The Worker Service can accumulate messages (e.g., 800 events per batch) and perform bulk inserts into the database, significantly reducing the load on the database.
+Scaling:
+
+Both the API Service and Worker Service can be scaled independently by running multiple instances. RabbitMQ can distribute the load among these instances.
+Fault Tolerance:
+
+If the Worker Service is temporarily down, messages remain in RabbitMQ until the service is back online.
+Testing the RabbitMQ Setup
+Send Messages Manually: Use the RabbitMQ Management UI to manually publish messages to the url-events queue for testing.
+
+Check Message Flow:
+
+Verify that the Worker Service consumes messages from the queue and processes them.
+Simulate Load:
+
+Use tools like Apache Benchmark (ab) or k6 to send high-volume HTTP requests to the API Service and monitor RabbitMQ's behavior under load.

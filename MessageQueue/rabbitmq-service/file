@@ -1,0 +1,5 @@
+rabbitmq-service/
+├── docker-compose.yml       # Docker Compose to deploy RabbitMQ
+├── rabbitmq/                # Directory for custom RabbitMQ configuration
+│   ├── rabbitmq.conf        # Custom RabbitMQ configuration
+│   ├── definitions.json     # Optional: Pre-configured queues and exchanges

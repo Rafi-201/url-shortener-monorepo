@@ -1,0 +1,13 @@
+How to Run the Worker Service:
+Build and Run Worker Service:
+
+bash
+Copy code
+docker build -t worker-service .
+docker run -d --name worker-service worker-service
+Check Logs: You can monitor logs using docker logs worker-service.
+
+Scaling and Load Handling:
+RabbitMQ: It will distribute the load evenly across the worker instances, allowing horizontal scaling of worker services.
+Bulk Inserts: The Worker Service accumulates messages and performs bulk inserts, which optimizes database interactions.
+Database: Ensure your database is optimized for high insert rates (e.g., using bulk insert operations, indexing, etc.).

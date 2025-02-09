@@ -1,0 +1,25 @@
+{
+  "name": "url-shortner-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "dev": "ts-node-dev src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

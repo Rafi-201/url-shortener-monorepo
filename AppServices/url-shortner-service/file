@@ -1,0 +1,24 @@
+api-service/
+├── src/
+│   ├── controllers/
+│   │   ├── UrlController.ts
+│   │
+│   ├── services/
+│   │   ├── UrlService.ts
+│   │
+│   ├── queue/
+│   │   ├── RabbitMQPublisher.ts
+│   │
+│   ├── utils/
+│   │   ├── Base62Encoder.ts
+│   │   ├── Logger.ts
+│   │
+│   ├── config/
+│   │   ├── appConfig.ts
+│   │   ├── rabbitmqConfig.ts
+│   │
+│   ├── index.ts
+│
+├── Dockerfile
+├── package.json
+├── tsconfig.json

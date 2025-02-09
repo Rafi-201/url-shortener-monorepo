@@ -1,0 +1,24 @@
+{
+  "rabbit_version": "3.9",
+  "users": [
+    {
+      "name": "admin",
+      "password_hash": "3r4grj34gj34gr3g34g",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "queues": [
+    {
+      "name": "url-events",
+      "vhost": "/",
+      "durable": true
+    }
+  ],
+  "exchanges": [],
+  "bindings": []
+}

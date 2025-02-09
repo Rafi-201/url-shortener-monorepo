@@ -1,0 +1,14 @@
+1. Install Dependencies
+   Now, install the necessary packages for Express, Knex, pg, and TypeScript, along with their type definitions.
+
+Install Express, Knex, and pg:
+bash
+```npm install express knex pg`
+
+Install TypeScript and Development Dependencies:
+bash
+```npm install --save-dev typescript @types/node @types/express @types/knex ts-node`
+typescript: The TypeScript compiler.
+ts-node: A TypeScript execution engine for Node.js (useful for running TypeScript directly without pre-compiling).
+@types/express: Type definitions for Express.
+@types/knex: Type definitions for Knex.

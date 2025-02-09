@@ -1,0 +1,39 @@
+url-shortener/
+│
+├── src/
+│   ├── controllers/                    
+│   │   └── UrlController.ts            
+│   │
+│   ├── services/                       
+│   │   └── UrlShortenerService.ts      
+│   │
+│   ├── repositories/                   
+│   │   └── UrlShortenerRepository.ts     
+│   │
+│   ├── models/                         
+│   │   └── UrlShortener.ts               
+│   │
+│   ├── utils/                          
+│   │   └── base62.ts                   
+│   │
+|   ├── database/
+|   |   └── migration
+│   ├── config/                         
+│   │   └── knex.ts                
+│   │
+│   └── app.ts                          
+│
+├── test/                               
+│   ├── controllers/
+│   │   └── UrlController.test.ts       
+│   ├── services/
+│   │   └── UrlShortenerService.test.ts 
+│   ├── repositories/
+│   │   └── UrlShortenerRepository.test.ts
+│   └── utils/
+│       └── base62.test.ts              
+│
+├── .env                                 
+├── package.json                        
+├── tsconfig.json                       
+└── README.md                           

@@ -1,0 +1,25 @@
+{
+  "name": "worker-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "start:dev": "node dist/app.js",
+    "start": "ts-node src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/amqplib": "^0.10.5",
+    "amqplib": "^0.10.5",
+    "pg": "^8.13.1",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "dotenv": "^16.4.5",
+    "ts-node": "^10.9.2"
+  }
+}
